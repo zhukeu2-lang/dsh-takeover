@@ -1,6 +1,6 @@
 {
   "name": "dsh-takeover",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "会话移交：右键任意会话「移交会话」，新建一个上下文干净的会话接手，老会话原样保留；附清理页管理交接文档",
   "type": "module",
   "main": "./lib/index.js",
