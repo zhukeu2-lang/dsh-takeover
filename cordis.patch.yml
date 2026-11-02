@@ -1,0 +1,5 @@
+# dsh-takeover bundle patch —— 把会话移交插件挂进 profile。
+# insert 的 id 与 package.json 的 name 一致，profile 的两步注册靠它解析。
+- insert:
+    - id: dsh-takeover
+      name: 'dsh-takeover'
