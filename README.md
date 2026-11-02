@@ -63,12 +63,23 @@ AI 会话聊久了会越来越长，越聊越贵、越聊越慢、越聊注意�
 
 ## 安装
 
+### 方式一：从 npm 装（推荐）
+
+```sh
+dsh plugin --profile desktop add dsh-takeover
+```
+
+装完重启 DSH，右键任意会话就能看到「移交会话」。
+
+> 国内网络建议走这条路：它只访问 npm 源，不需要连 GitHub 的下载通道。
+
+### 方式二：本地 link（离线 / 开发用）
+
 > 以下命令以 `DSH_HOME` 表示 DSH 数据目录（通常是 `%USERPROFILE%\.dsh`，迁移过的话以实际为准）。
 
 **1. 放插件本体**
 
 ```powershell
-# 把本目录复制到 local-plugins 下
 Copy-Item ".\dsh-takeover" "$env:DSH_HOME\local-plugins\dsh-takeover" -Recurse
 ```
 
@@ -79,7 +90,7 @@ Copy-Item ".\dsh-takeover" "$env:DSH_HOME\local-plugins\dsh-takeover" -Recurse
 ```json
 {
   "dependencies": {
-    "dsh-takeover": "link:E:/.dsh/local-plugins/dsh-takeover"
+    "dsh-takeover": "link:$env:DSH_HOME/local-plugins/dsh-takeover"
   },
   "dsh": {
     "profile": {
@@ -91,7 +102,7 @@ Copy-Item ".\dsh-takeover" "$env:DSH_HOME\local-plugins\dsh-takeover" -Recurse
 }
 ```
 
-（`link:` 后的路径按你机器上的真实位置改；`dependencies` 与 `bundles` 两处都要加。）
+（`dependencies` 与 `bundles` 两处都要加，路径按你机器上的真实位置改。）
 
 **3. 建目录链接**
 
@@ -101,8 +112,7 @@ cmd /c mklink /J "$env:DSH_HOME\profiles\desktop\node_modules\dsh-takeover" "$en
 
 **4. 重启 DSH**
 
-插件列表里出现 `dsh-takeover` 即为装好；右键任意会话能看到「移交会话」。
-
+插件列表里出现 `dsh-takeover` 即为装好。
 ### 卸载
 
 ```powershell
